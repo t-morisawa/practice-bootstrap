@@ -99,3 +99,61 @@ https://qiita.com/tonkotsuboy_com/items/1855734522bfe7ef7dad
 Bootstrap 4 をカスタマイズする
 https://qiita.com/pikanji/items/111cfb353bd6ec1eabb5
 ```
+
+# Sassの編集を実際にやってみる（Sassコンパイル編）
+## メモ
+
+やり方は二種類ある。
+
+コンパイルされたCSSを読みに行く
+ 
+```
+'./bootstrap-4.1.3/dist/css/bootstrap.min.css'
+```
+ 
+コンパイルされる前のものをインポートして一緒にコンパイルする
+ 
+```
+@import "custom";
+@import "~bootstrap/scss/bootstrap";
+``` 
+
+## まずhtmlからビルドインのbootstrapを読みに行く
+
+```
+<link rel="stylesheet" href="./bootstrap-4.1.3/dist/css/bootstrap.min.css">
+```
+
+## このファイルを開く
+
+```
+./bootstrap-4.1.3/scss/_variables.scss
+```
+
+## 書き換える
+
+```
+$alert-border-radius:               $border-radius !default;
+```
+
+```
+$alert-border-radius:               0 !default;
+```
+
+## 書き換えたものをコンパイルする
+
+```
+cd ./bootstrap-4.1.3/
+npm install
+npm run dist
+```
+
+## 変わっていることを確認
+
+```
+open ./practice-sass.html
+```
+ 
+# Sassの編集を実際にやってみる（npmモジュール編）
+
+npm-bundleディレクトリを参照
